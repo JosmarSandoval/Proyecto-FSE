@@ -1,0 +1,25 @@
+--- a/drawbgfx.cpp  	2022-04-03 21:00:25.291487695 +0200
++++ b/drawbgfx.cpp  	2022-04-03 21:03:47.621247497 +0200
+@@ -238,7 +238,8 @@
+    }
+ 
+ #   if BX_PLATFORM_LINUX || BX_PLATFORM_BSD || BX_PLATFORM_RPI
+-	return (void*)wmi.info.x11.window;
++	// return (void*)wmi.info.x11.window;
++	return (void*)_window;
+ #   elif BX_PLATFORM_OSX
+    return wmi.info.cocoa.window;
+ #   elif BX_PLATFORM_WINDOWS
+@@ -258,8 +259,10 @@
+    }
+ 
+ #   if BX_PLATFORM_LINUX || BX_PLATFORM_BSD
+-	platform_data.ndt          = wmi.info.x11.display;
+-	platform_data.nwh          = (void*)(uintptr_t)wmi.info.x11.window;
++	// platform_data.ndt          = wmi.info.x11.display;
++	// platform_data.nwh          = (void*)(uintptr_t)wmi.info.x11.window;
++	platform_data.ndt          = NULL;
++	platform_data.nwh          = _window;
+ #   elif BX_PLATFORM_OSX
+    platform_data.ndt          = NULL;
+    platform_data.nwh          = return (void*)_window;
